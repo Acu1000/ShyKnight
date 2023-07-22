@@ -11,7 +11,7 @@ namespace ShyKnight
     {
         internal static ShyKnight Instance;
 
-        public override string GetVersion() => "v1.2.0";
+        public override string GetVersion() => "v1.2.1";
 
         public ShyKnight() : base("ShyKnight")
         {
