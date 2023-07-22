@@ -11,7 +11,7 @@ namespace ShyKnight
     {
         internal static ShyKnight Instance;
 
-        public override string GetVersion() => "v1.2.1";
+        public override string GetVersion() => "v1.3.0.0";
 
         public ShyKnight() : base("ShyKnight")
         {
@@ -32,6 +32,8 @@ namespace ShyKnight
 
         private void RemoveAudience()
         {
+            // GODHOME
+
             // Check if the current scene contains godhome audience
             GameObject arena_prefab = GameObject.Find("GG_Arena_Prefab");
             if (arena_prefab != null)
@@ -47,6 +49,34 @@ namespace ShyKnight
                 if (gs_crowd != null)
                 {
                     gs_crowd.SetActive(false);
+                }
+            }
+
+            // COLISSEUM
+
+            // Check if you're in colisseum
+            GameObject colosseum_manager = GameObject.Find("Colosseum Manager");
+            if (colosseum_manager != null)
+            {
+                // Remove the audience
+                // Overcomplicated way to get all objects with "Colosseum Crowd NPC in their name
+                tk2dSpriteAnimator[] crowd_npcs = GameObject.FindObjectsOfType<tk2dSpriteAnimator>();
+                for(int i=0; i<crowd_npcs.Length; i++)
+                {
+                    tk2dSpriteAnimator comp = crowd_npcs[i];
+                    GameObject obj = comp.gameObject;        
+
+                    if (obj.name.Contains("Colosseum Crowd NPC"))
+                    {
+                        obj.SetActive(false);
+                    }
+                }
+
+                // Remove the audience audio
+                GameObject crowd_audio = GameObject.Find("Crowd Audio");
+                if (crowd_audio != null)
+                {
+                    crowd_audio.SetActive(false);
                 }
             }
         }
